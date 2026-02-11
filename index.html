@@ -61,7 +61,7 @@
             gap: 1rem;
             width: max-content;
             flex-wrap: nowrap;
-            animation: scroll 30s linear infinite; /* Скорость прокрутки */
+            animation: scroll 40s linear infinite; /* Скорость прокрутки */
         }
 
         .scroller__inner:hover {
@@ -146,6 +146,52 @@
             </button>
         </div>
     </header>
+
+    <!-- БЛОК 2: ОТЗЫВЫ (КАРУСЕЛЬ) -->
+    <section class="py-12 bg-zinc-900 border-b border-zinc-800">
+        <div class="max-w-md mx-auto px-4 text-center mb-6">
+             <h2 class="text-2xl font-bold uppercase text-white leading-tight">Ось як змінюється ваша ситуація після розбору</h2>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="scroller mb-8">
+            <div class="scroller__inner">
+                <!-- ВСТАВЬТЕ СЮДА ВАШИ КАРТИНКИ (Originals) -->
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review1.jpg" alt="Review 1" class="w-full h-full object-cover">
+                </div>
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review2.jpg" alt="Review 2" class="w-full h-full object-cover">
+                </div>
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review3.jpg" alt="Review 3" class="w-full h-full object-cover">
+                </div>
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review4.jpg" alt="Review 4" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- DUPLICATE ITEMS (Для бесконечности) -->
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review1.jpg" alt="Review 1" class="w-full h-full object-cover">
+                </div>
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review2.jpg" alt="Review 2" class="w-full h-full object-cover">
+                </div>
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review3.jpg" alt="Review 3" class="w-full h-full object-cover">
+                </div>
+                <div class="review-card aspect-[9/16] bg-zinc-800">
+                    <img src="review4.jpg" alt="Review 4" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-md mx-auto px-4">
+            <button onclick="openModal()" class="w-full btn-red text-white font-bold py-4 rounded-xl uppercase tracking-wider hover:opacity-90 transition shadow-lg">
+                ХОЧУ ПЕРСОНАЛЬНИЙ АУДИТ
+            </button>
+        </div>
+    </section>
 
     <!-- БЛОК 3: БОЛИ -->
     <section class="py-12 px-4 bg-zinc-950">
@@ -321,7 +367,7 @@
         </div>
     </section>
 
-    <!-- БЛОК 8: ОТЗЫВЫ (БЕСКОНЕЧНЫЙ СКРОЛЛ) -->
+    <!-- БЛОК 8: ОТЗЫВЫ (ЕЩЕ РАЗ) -->
     <section class="py-12 bg-black overflow-hidden">
         <div class="text-center mb-8 px-4">
             <h2 class="text-2xl font-bold uppercase text-white">Результати моєї системи</h2>
@@ -344,7 +390,7 @@
                     <img src="review4.jpg" alt="Review 4" class="w-full h-full object-cover">
                 </div>
                 
-                <!-- DUPLICATE ITEMS (Required for seamless loop) -->
+                <!-- DUPLICATE ITEMS -->
                 <div class="review-card aspect-[9/16] bg-zinc-800">
                     <img src="review1.jpg" alt="Review 1" class="w-full h-full object-cover">
                 </div>
@@ -379,7 +425,7 @@
         </div>
     </section>
 
-    <!-- --- MODAL POPUP (БЕЗ ИЗМЕНЕНИЙ) --- -->
+    <!-- --- MODAL POPUP --- -->
     <div id="modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
         <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
