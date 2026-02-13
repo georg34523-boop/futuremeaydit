@@ -14,7 +14,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts: Playfair Display (Luxury Serif) + Inter (Body) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
@@ -37,7 +37,7 @@
         /* Кнопка (Gold Gradient) */
         .btn-gold {
             background: linear-gradient(180deg, #d4af7a 0%, #b08d55 100%);
-            color: #1a1a1a;
+            color: #000;
             box-shadow: 0 4px 20px rgba(212, 175, 122, 0.25);
             transition: all 0.3s ease;
         }
@@ -55,22 +55,23 @@
         }
         .animate-pulse-gold { animation: pulse-gold 2s infinite; }
 
-        /* Hero Overlay (Dark Green Gradient) */
+        /* Hero Overlay - ДЕЛАЕМ СВЕТЛЕЕ */
         .hero-overlay {
-            background: linear-gradient(180deg, rgba(5,10,8,0.7) 0%, rgba(5,10,8,1) 90%);
+            /* Градиент только снизу, чтобы лицо было видно */
+            background: linear-gradient(180deg, rgba(5,10,8,0.2) 0%, rgba(5,10,8,0.6) 60%, rgba(5,10,8,1) 100%);
         }
 
-        /* Карточки в стиле Glow Up */
+        /* Карточки */
         .glow-card {
             background-color: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(212, 175, 122, 0.2);
             border-radius: 0.75rem;
         }
 
-        /* Стили для инпута телефона */
+        /* Инпут телефона */
         .iti { width: 100%; color: black; }
         
-        /* --- INFINITE SCROLL CAROUSEL --- */
+        /* --- INFINITE SCROLL --- */
         .scroller {
             max-width: 100%;
             overflow: hidden;
@@ -95,6 +96,12 @@
             overflow: hidden;
             border: 1px solid rgba(212, 175, 122, 0.3);
         }
+
+        /* Фикс высоты для мобильных */
+        .h-dvh-custom {
+            height: 100vh; /* fallback */
+            height: 100dvh;
+        }
     </style>
 
     <!-- PIXEL PLACEHOLDER -->
@@ -108,67 +115,70 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         
-        // Вставь сюда свой ID пикселя
         fbq('init', 'YOUR_PIXEL_ID'); 
         fbq('track', 'PageView');
     </script>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-gold selection:text-black">
 
-    <!-- HERO SECTION (Блок 1) -->
-    <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 py-8 overflow-hidden">
+    <!-- HERO SECTION (ОБНОВЛЕННЫЙ) -->
+    <header class="relative h-dvh-custom flex flex-col justify-center items-center text-center px-4 py-4 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- ФОН (fon1.jpg) - желательно темный, эстетичный -->
-            <img src="fon1.jpg" alt="Background" class="w-full h-full object-cover object-center opacity-50">
+            <!-- ФОН: Увеличил прозрачность до 80%, чтобы фото было видно четко -->
+            <img src="fon1.jpg" alt="Background" class="w-full h-full object-cover object-top opacity-80">
             <div class="hero-overlay absolute inset-0"></div>
         </div>
 
-        <div class="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center mt-8">
+        <!-- Контент сжат, чтобы влезть в экран -->
+        <div class="relative z-10 w-full max-w-md mx-auto flex flex-col items-center justify-end h-full pb-8 sm:justify-center">
             
-            <!-- Бейдж -->
-            <div class="inline-block border border-gold/40 bg-gold/10 backdrop-blur-md px-4 py-1.5 rounded-full mb-6">
-                <span class="text-gold text-xs font-bold uppercase tracking-widest">Персональна Стратегія</span>
+            <!-- Бейдж (сделал меньше отступы) -->
+            <div class="inline-block border border-gold/40 bg-[#050a08]/60 backdrop-blur-md px-3 py-1 rounded-full mb-3">
+                <span class="text-gold text-[10px] font-bold uppercase tracking-widest">Персональна Стратегія</span>
             </div>
 
-            <!-- Заголовок -->
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-medium uppercase leading-tight mb-4 text-white drop-shadow-xl">
-                Отримай <span class="text-gold italic">персональну стратегію</span> як вибудувати
+            <!-- Заголовок (уменьшил размер шрифта для мобилок) -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-medium uppercase leading-none mb-2 text-white drop-shadow-xl">
+                Отримай <span class="text-gold italic">стратегію</span> як вибудувати
                 <span class="text-gold">внутрішню опору</span>
             </h1>
 
-            <p class="text-lg md:text-xl text-gray-200 mb-6 font-light leading-snug">
-                Та почати реалізовуватися масштабно — <br class="hidden md:block">
-                <span class="text-white font-normal">без вигорання, насилля над собою та вічного пошуку схвалення</span>
+            <p class="text-sm sm:text-lg text-gray-200 mb-3 font-light leading-snug drop-shadow-md">
+                Без вигорання, насилля над собою та вічного пошуку схвалення
             </p>
 
-            <div class="w-24 h-[1px] bg-gold/50 mb-6"></div>
-
-            <p class="text-sm text-gray-400 mb-8 px-2 max-w-md">
-                Отримай персональний аудит, на якому я детально розберу твою поточну ситуацію. Ти отримаєш чіткий покроковий план: що саме тримає тебе на місці і які конкретні кроки зроблять тебе реалізованою.
+            <!-- Новый текст (более компактный) -->
+            <p class="text-xs text-gray-300 mb-4 px-1 leading-tight max-w-sm mx-auto">
+                Отримай персональний аудит, на якому я детально розберу твою ситуацію і дам чіткий план: що тримає тебе на місці і які конкретні кроки приведуть тебе до реалізації без вигорання.
             </p>
 
-            <!-- Цена -->
-            <div class="flex items-baseline gap-4 mb-6">
-                <span class="text-5xl font-serif text-white">390 ₴</span>
-                <span class="text-xl text-gray-500 line-through decoration-gold/70">1790 ₴</span>
+            <!-- Блок цены (Как в первом варианте, но Золотой) -->
+            <div class="bg-[#050a08]/80 backdrop-blur-md border border-gold/30 rounded-xl p-3 w-full mb-3 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-20 h-20 bg-gold blur-3xl opacity-20"></div>
+                <div class="flex flex-col items-center justify-center">
+                    <span class="text-4xl sm:text-5xl font-serif text-white">390 ₴</span>
+                    <span class="text-sm text-gray-400 line-through decoration-gold">1790 ₴</span>
+                </div>
             </div>
 
-            <!-- Таймер -->
-            <div class="flex items-center gap-2 mb-8 text-gold/80 font-mono text-sm border border-gold/20 px-4 py-2 rounded">
-                <i data-lucide="clock" class="w-4 h-4"></i>
-                <span>ДО ЗБІЛЬШЕННЯ ЦІНИ: <strong id="timer" class="text-gold">14:59</strong></span>
+            <!-- Таймер (Как в первом варианте, пунктир) -->
+            <div class="border border-dashed border-gold/50 bg-gold/10 rounded-lg px-4 py-2 mb-4 w-full">
+                <div class="flex justify-between items-center text-gold font-mono text-xs sm:text-sm">
+                    <span class="uppercase tracking-wide">До збільшення ціни:</span>
+                    <span class="font-bold text-base" id="timer">14:59</span>
+                </div>
             </div>
 
             <!-- Кнопка CTA -->
-            <button onclick="openModal()" class="w-full btn-gold font-bold text-lg py-5 rounded-lg uppercase tracking-wider animate-pulse-gold">
+            <button onclick="openModal()" class="w-full btn-gold font-bold text-lg py-4 rounded-xl uppercase tracking-wider animate-pulse-gold shadow-2xl">
                 Хочу персональний аудит
             </button>
         </div>
     </header>
 
     <!-- БЛОК 2: ОТЗЫВЫ (КАРУСЕЛЬ 1) -->
-    <section class="py-12 border-b border-white/5 bg-[#050a08]">
-        <div class="max-w-md mx-auto px-4 text-center mb-8">
+    <section class="py-10 border-b border-white/5 bg-[#050a08]">
+        <div class="max-w-md mx-auto px-4 text-center mb-6">
              <h2 class="text-2xl font-serif text-white leading-tight">Ось як змінюється ваша ситуація після розбору</h2>
         </div>
 
@@ -179,7 +189,7 @@
                 <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review2.jpg" class="w-full h-full object-cover"></div>
                 <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review3.jpg" class="w-full h-full object-cover"></div>
                 <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review4.jpg" class="w-full h-full object-cover"></div>
-                <!-- Дубликаты для бесконечности -->
+                <!-- Дубликаты -->
                 <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review1.jpg" class="w-full h-full object-cover"></div>
                 <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review2.jpg" class="w-full h-full object-cover"></div>
                 <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review3.jpg" class="w-full h-full object-cover"></div>
@@ -195,7 +205,7 @@
     </section>
 
     <!-- БЛОК 3: БОЛИ -->
-    <section class="py-16 px-4 bg-[#08100d]">
+    <section class="py-12 px-4 bg-[#08100d]">
         <div class="max-w-lg mx-auto">
             <h2 class="text-3xl font-serif text-center mb-10 text-gold italic">Тобі знайоме це відчуття?</h2>
             
@@ -239,18 +249,18 @@
         </div>
     </section>
 
-    <!-- БЛОК 4: ЧОМУ ТИ СТОЇШ (Сохранили контент, сменили стиль) -->
-    <section class="py-16 px-4 bg-[#050a08] border-t border-white/5">
+    <!-- БЛОК 4: ЧОМУ ТИ СТОЇШ -->
+    <section class="py-12 px-4 bg-[#050a08] border-t border-white/5">
         <div class="max-w-lg mx-auto">
             <h2 class="text-2xl font-serif text-center mb-4 uppercase">Чому ти стоїш на місці, поки інші зростають?</h2>
             
-            <p class="text-center text-gray-300 mb-10 font-light text-sm">
+            <p class="text-center text-gray-300 mb-8 font-light text-sm">
                 Проблема не в тобі. Проблема в тому, що ніхто не показав тобі <span class="text-gold underline decoration-1 underline-offset-4">ТВІЙ</span> шлях.
             </p>
             
             <div class="grid gap-4">
                 <!-- Card 1 -->
-                <div class="glow-card p-6 flex gap-4 items-start">
+                <div class="glow-card p-5 flex gap-4 items-start">
                     <div class="text-2xl mt-1">⚠️</div>
                     <div>
                         <h4 class="font-bold text-gold uppercase mb-2 text-sm tracking-wider">Сліпе копіювання</h4>
@@ -259,7 +269,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="glow-card p-6 flex gap-4 items-start">
+                <div class="glow-card p-5 flex gap-4 items-start">
                     <div class="text-2xl mt-1">💔</div>
                     <div>
                         <h4 class="font-bold text-gold uppercase mb-2 text-sm tracking-wider">Відсутність внутрішнього стержня</h4>
@@ -268,7 +278,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="glow-card p-6 flex gap-4 items-start">
+                <div class="glow-card p-5 flex gap-4 items-start">
                     <div class="text-2xl mt-1">🔥</div>
                     <div>
                         <h4 class="font-bold text-gold uppercase mb-2 text-sm tracking-wider">Дисципліна через насилля</h4>
@@ -280,16 +290,16 @@
     </section>
 
     <!-- БЛОК 5: АВТОР -->
-    <section class="py-16 px-4 bg-[#08100d]">
+    <section class="py-12 px-4 bg-[#08100d]">
         <div class="max-w-lg mx-auto">
-            <div class="text-center mb-8">
+            <div class="text-center mb-6">
                 <p class="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-2">Експерт</p>
                 <h2 class="text-3xl font-serif text-white uppercase">Анастасія Унгурян</h2>
             </div>
 
-            <div class="flex flex-col items-center mb-8">
+            <div class="flex flex-col items-center mb-6">
                 <!-- Фото с золотой рамкой -->
-                <div class="w-48 h-48 rounded-full p-1 border border-gold/50 mb-6">
+                <div class="w-40 h-40 rounded-full p-1 border border-gold/50 mb-4">
                     <div class="w-full h-full rounded-full overflow-hidden bg-zinc-800">
                         <!-- ВСТАВЬ ФОТО АВТОРА -->
                         <img src="author.jpg" alt="Анастасія" class="w-full h-full object-cover">
@@ -297,7 +307,7 @@
                 </div>
             </div>
 
-            <h3 class="text-xl font-serif text-gold italic text-center mb-6">«Я знаю, що таке «стояти на паузі» — бо була там сама»</h3>
+            <h3 class="text-lg font-serif text-gold italic text-center mb-6">«Я знаю, що таке «стояти на паузі» — бо була там сама»</h3>
 
             <div class="text-gray-300 font-light space-y-4 leading-relaxed text-sm text-justify">
                 <p>Привіт, я Анастасія і я знаю, як це бути нереалізованій. Мені було 25. Декрет, післяпологова депресія, відчуття повної нереалізованості. Сварки з чоловіком, шлюб на межі розлучення, порожнеча всередині. Я не знала ким хочу бути коли виросту.</p>
@@ -305,7 +315,7 @@
                 <p>І я точно знаю: проблема не в тому, що ти «не можеш». Проблема в тому, що ніхто не показав тобі ТВІЙ шлях.</p>
             </div>
 
-            <div class="mt-8 p-6 bg-gold/5 border-l-2 border-gold rounded-r-lg">
+            <div class="mt-6 p-5 bg-gold/5 border-l-2 border-gold rounded-r-lg">
                 <p class="text-gold italic text-sm">
                     "Моя ціль — показати тобі, що реалізовуватися можна легко, через розуміння себе, а не через насилля та вічне порівняння з іншими."
                 </p>
@@ -314,8 +324,8 @@
     </section>
 
     <!-- БЛОК 6: РЕЗУЛЬТАТЫ (КАРУСЕЛЬ 2) -->
-    <section class="py-12 bg-[#050a08]">
-        <div class="text-center mb-8 px-4">
+    <section class="py-10 bg-[#050a08]">
+        <div class="text-center mb-6 px-4">
             <h2 class="text-2xl font-serif text-white">Результати моєї системи</h2>
         </div>
 
@@ -335,17 +345,17 @@
         </div>
     </section>
 
-    <!-- БЛОК 7: ЩО ОТРИМАЄШ (Стиль Glow Up Cards) -->
-    <section class="py-16 px-4 bg-[#08100d] border-t border-white/5">
+    <!-- БЛОК 7: ЩО ОТРИМАЄШ -->
+    <section class="py-12 px-4 bg-[#08100d] border-t border-white/5">
         <div class="max-w-lg mx-auto">
-            <h2 class="text-3xl font-serif text-center mb-2 text-white">Що ти отримаєш <br><span class="text-gold italic">на розборі?</span></h2>
-            <p class="text-center text-gray-400 text-sm mb-10 font-light">Це не шаблонні поради. Це глибокий аналіз.</p>
+            <h2 class="text-2xl font-serif text-center mb-2 text-white">Що ти отримаєш <br><span class="text-gold italic">на розборі?</span></h2>
+            <p class="text-center text-gray-400 text-sm mb-8 font-light">Це не шаблонні поради. Це глибокий аналіз.</p>
             
-            <div class="grid gap-6">
+            <div class="grid gap-4">
                 
                 <!-- Card 1 -->
-                <div class="glow-card p-6">
-                    <div class="flex items-center gap-3 mb-3">
+                <div class="glow-card p-5">
+                    <div class="flex items-center gap-3 mb-2">
                         <i data-lucide="compass" class="text-gold"></i>
                         <h4 class="font-bold text-white text-lg">Пошук внутрішньої опори</h4>
                     </div>
@@ -355,8 +365,8 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="glow-card p-6">
-                    <div class="flex items-center gap-3 mb-3">
+                <div class="glow-card p-5">
+                    <div class="flex items-center gap-3 mb-2">
                         <i data-lucide="gem" class="text-gold"></i>
                         <h4 class="font-bold text-white text-lg">Ревізія твоїх цінностей</h4>
                     </div>
@@ -366,8 +376,8 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="glow-card p-6">
-                    <div class="flex items-center gap-3 mb-3">
+                <div class="glow-card p-5">
+                    <div class="flex items-center gap-3 mb-2">
                         <i data-lucide="map" class="text-gold"></i>
                         <h4 class="font-bold text-white text-lg">Система Future Me</h4>
                     </div>
@@ -378,8 +388,8 @@
 
             </div>
 
-            <div class="mt-10">
-                <button onclick="openModal()" class="w-full btn-gold font-bold text-lg py-5 rounded-lg uppercase tracking-wider shadow-lg">
+            <div class="mt-8">
+                <button onclick="openModal()" class="w-full btn-gold font-bold text-lg py-4 rounded-lg uppercase tracking-wider shadow-lg">
                     Хочу персональний аудит
                 </button>
             </div>
@@ -387,14 +397,14 @@
     </section>
 
     <!-- БЛОК 8: ГАРАНТИЯ -->
-    <section class="py-16 px-4 bg-[#050a08] pb-32">
-        <div class="max-w-lg mx-auto text-center border border-gold/30 bg-gold/5 rounded-xl p-8 relative overflow-hidden">
+    <section class="py-12 px-4 bg-[#050a08] pb-32">
+        <div class="max-w-lg mx-auto text-center border border-gold/30 bg-gold/5 rounded-xl p-6 relative overflow-hidden">
             <!-- Блик -->
             <div class="absolute -top-10 -right-10 w-32 h-32 bg-gold blur-3xl opacity-10"></div>
 
-            <i data-lucide="shield-check" class="w-12 h-12 text-gold mx-auto mb-4"></i>
-            <h2 class="text-xl font-serif text-white uppercase mb-4 tracking-wide">100% Гарантія повернення</h2>
-            <p class="text-sm text-gray-300 mb-8 font-light leading-relaxed">
+            <i data-lucide="shield-check" class="w-10 h-10 text-gold mx-auto mb-3"></i>
+            <h2 class="text-lg font-serif text-white uppercase mb-3 tracking-wide">100% Гарантія повернення</h2>
+            <p class="text-sm text-gray-300 mb-6 font-light leading-relaxed">
                 Якщо після мого розбору ти не побачиш жодного нового вектора для свого розвитку — я поверну тобі всі 390 грн без зайвих питань.
             </p>
             
@@ -404,7 +414,7 @@
         </div>
     </section>
 
-    <!-- MODAL POPUP (Dark Theme) -->
+    <!-- MODAL POPUP -->
     <div id="modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="absolute inset-0 bg-black/90 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
         <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
