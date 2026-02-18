@@ -445,6 +445,11 @@
                             <input type="text" id="name" class="block w-full rounded-md border border-white/10 py-3 px-4 bg-white/5 text-white placeholder:text-gray-600 focus:ring-1 focus:ring-gold focus:border-gold outline-none transition-all" placeholder="Олена" required>
                         </div>
                         <div>
+                            <label class="block text-xs font-medium uppercase tracking-widest text-gold mb-1">Ваш Telegram</label>
+                            <input type="text" id="telegram" class="block w-full rounded-md border border-white/10 py-3 px-4 bg-white/5 text-white placeholder:text-gray-600 focus:ring-1 focus:ring-gold focus:border-gold outline-none transition-all" placeholder="@username" required>
+                            <p id="telegram-error" class="mt-2 text-xs text-red-400 hidden">Введіть нік з @</p>
+                        </div>
+                        <div>
                             <label class="block text-xs font-medium uppercase tracking-widest text-gold mb-1">Ваш Телефон</label>
                             <input type="tel" id="phone" class="block w-full rounded-md border border-white/10 py-3 bg-white/5 text-white focus:ring-1 focus:ring-gold focus:border-gold outline-none transition-all" required>
                             <p id="phone-error" class="mt-2 text-xs text-red-400 hidden">Введіть коректний номер</p>
@@ -542,17 +547,39 @@
         // --- FORM SUBMIT ---
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const errorMsg = document.getElementById('phone-error');
+            const phoneErrorMsg = document.getElementById('phone-error');
+            const telegramErrorMsg = document.getElementById('telegram-error');
             const submitBtn = document.getElementById('submitBtn');
-
+            const telegramInput = document.getElementById('telegram');
+            
+            let hasError = false;
+            
+            // Валідація телефону
             if (!iti.isValidNumber()) { 
                 phoneInput.classList.add('border-red-500'); 
-                errorMsg.classList.remove('hidden'); 
-                return; 
+                phoneErrorMsg.classList.remove('hidden'); 
+                hasError = true;
             } else { 
                 phoneInput.classList.remove('border-red-500'); 
-                errorMsg.classList.add('hidden'); 
+                phoneErrorMsg.classList.add('hidden'); 
             }
+            
+            // Валідація Telegram (має починатися з @)
+            let telegram = telegramInput.value.trim();
+            if (!telegram.startsWith('@')) {
+                telegram = '@' + telegram;
+            }
+            if (telegram.length < 3 || !/^@[a-zA-Z0-9_]+$/.test(telegram)) {
+                telegramInput.classList.add('border-red-500');
+                telegramErrorMsg.classList.remove('hidden');
+                hasError = true;
+            } else {
+                telegramInput.classList.remove('border-red-500');
+                telegramErrorMsg.classList.add('hidden');
+                telegramInput.value = telegram; // Оновлюємо значення з @
+            }
+            
+            if (hasError) return;
 
             // Відправляємо Lead в Pixel
             if (typeof fbq === 'function') fbq('track', 'Lead');
@@ -565,6 +592,7 @@
             // Формуємо дані
             const formData = new FormData();
             formData.append('name', document.getElementById('name').value);
+            formData.append('telegram', document.getElementById('telegram').value);
             formData.append('full_phone', iti.getNumber());
             formData.append('amount', AMOUNT);
             formData.append('return_url', RETURN_URL);
