@@ -86,7 +86,7 @@
         }
     </style>
 
-    <!-- PIXEL PLACEHOLDER -->
+    <!-- META PIXEL -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -97,7 +97,7 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         
-        fbq('init', 'YOUR_PIXEL_ID'); 
+        fbq('init', '802066355916067'); 
         fbq('track', 'PageView');
     </script>
 </head>
@@ -423,7 +423,7 @@
             <div class="absolute -top-10 -right-10 w-32 h-32 bg-gold blur-3xl opacity-10"></div>
             <i data-lucide="shield-check" class="w-10 h-10 text-gold mx-auto mb-3"></i>
             <h2 class="text-lg font-serif text-white uppercase mb-3 tracking-wide">100% Гарантія повернення</h2>
-            <p class="text-sm text-gray-300 mb-6 font-light leading-relaxed">Якщо після мого розбору ти не побачиш жодного нового вектора для свого розвитку — я поверну тобі всі 390 грн без зайвих питань.</p>
+            <p class="text-sm text-gray-300 mb-6 font-light leading-relaxed">Якщо після мого розбору ти не побачиш жодного нового вектора для свого розвитку — я поверну тобі всі <span class="dynamic-price">390 грн</span> без зайвих питань.</p>
             <button onclick="openModal()" class="w-full bg-transparent border border-gold text-gold hover:bg-gold hover:text-black font-bold py-4 rounded-lg uppercase tracking-widest transition text-sm">
                 Хочу персональний розбір
             </button>
@@ -438,7 +438,7 @@
                 <div class="px-4 pb-4 pt-5 sm:p-6 sm:pb-4 relative">
                     <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x"></i></button>
                     <h3 class="text-2xl font-serif leading-6 text-white text-center mb-2">Отримати доступ</h3>
-                    <p class="text-sm text-gray-400 text-center mb-6 font-light">Залиште свої контакти, щоб закріпити ціну <span class="text-gold font-bold">390 грн</span></p>
+                    <p class="text-sm text-gray-400 text-center mb-6 font-light">Залиште свої контакти, щоб закріпити ціну <span class="text-gold font-bold dynamic-price">390 грн</span></p>
                     <form id="leadForm" class="space-y-4">
                         <div>
                             <label class="block text-xs font-medium uppercase tracking-widest text-gold mb-1">Ваше Ім'я</label>
@@ -462,9 +462,34 @@
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script>
-        // --- SETTINGS ---
-        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
-        const TG_BOT_URL = 'YOUR_BOT_LINK_HERE';
+        // --- НАЛАШТУВАННЯ ---
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwGypKDfaWyOB0qN8lv1tiqs37sw16-7sHn2SOV3VerLC1e2PG39F5Vo0pWpEAinOnwlg/exec';
+        
+        // Отримуємо параметри з URL
+        function getURLParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                price: params.get('price') || '390',
+                test: params.get('test') || '',
+                traff_eu: params.get('traff_eu') || '',
+                campaign_name: params.get('campaign_name') || params.get('utm_campaign') || '',
+                adset_name: params.get('adset_name') || params.get('utm_medium') || '',
+                ad_name: params.get('ad_name') || params.get('utm_content') || ''
+            };
+        }
+        
+        const urlParams = getURLParams();
+        // Якщо test=1, то ціна 1 грн для тестування
+        const AMOUNT = urlParams.test ? '1' : urlParams.price;
+        const DISPLAY_PRICE = urlParams.price; // Показуємо завжди реальну ціну
+        const RETURN_URL = window.location.origin + '/thanks.html';
+        
+        // Оновлюємо ціни на сторінці
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.dynamic-price').forEach(el => {
+                el.textContent = DISPLAY_PRICE + ' грн';
+            });
+        });
         
         lucide.createIcons();
 
@@ -497,7 +522,7 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // --- FORM ---
+        // --- PHONE INPUT ---
         const phoneInput = document.querySelector("#phone");
         const iti = window.intlTelInput(phoneInput, {
             initialCountry: "auto",
@@ -509,35 +534,93 @@
             customContainer: "w-full"
         });
 
-        function getUTMs() {
-            const p = new URLSearchParams(window.location.search);
-            return { source: p.get('utm_source')||'', medium: p.get('utm_medium')||'', campaign: p.get('utm_campaign')||'', content: p.get('utm_content')||'', term: p.get('utm_term')||'' };
-        }
-
+        // --- FORM SUBMIT ---
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const errorMsg = document.getElementById('phone-error');
             const submitBtn = document.getElementById('submitBtn');
 
-            if (!iti.isValidNumber()) { phoneInput.classList.add('border-red-500'); errorMsg.classList.remove('hidden'); return; }
-            else { phoneInput.classList.remove('border-red-500'); errorMsg.classList.add('hidden'); }
+            if (!iti.isValidNumber()) { 
+                phoneInput.classList.add('border-red-500'); 
+                errorMsg.classList.remove('hidden'); 
+                return; 
+            } else { 
+                phoneInput.classList.remove('border-red-500'); 
+                errorMsg.classList.add('hidden'); 
+            }
 
-            const formData = { name: document.getElementById('name').value, phone: iti.getNumber(), date: new Date().toLocaleString("uk-UA"), ...getUTMs() };
+            // Відправляємо Lead в Pixel
+            if (typeof fbq === 'function') fbq('track', 'Lead');
+
             const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Відправка...';
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Обробка...';
             submitBtn.disabled = true;
             lucide.createIcons();
 
+            // Формуємо дані
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('full_phone', iti.getNumber());
+            formData.append('amount', AMOUNT);
+            formData.append('return_url', RETURN_URL);
+            formData.append('campaign_name', urlParams.campaign_name);
+            formData.append('adset_name', urlParams.adset_name);
+            formData.append('ad_name', urlParams.ad_name);
+            formData.append('traff_eu', urlParams.traff_eu);
+
+            // Відправляємо на скрипт
             fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST', mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            }).then(() => {
-                if (typeof fbq === 'function') fbq('track', 'Lead');
-                setTimeout(() => { window.location.href = TG_BOT_URL; }, 500);
-            }).catch(error => {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.paymentData) {
+                    // Створюємо форму для WayForPay
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'https://secure.wayforpay.com/pay';
+                    form.target = '_top';
+                    form.style.display = 'none';
+                    
+                    const pd = data.paymentData;
+                    const fields = {
+                        'merchantAccount': pd.merchantAccount,
+                        'merchantDomainName': pd.merchantDomainName,
+                        'orderReference': pd.orderReference,
+                        'orderDate': pd.orderDate,
+                        'amount': pd.amount,
+                        'currency': pd.currency,
+                        'productName[]': pd.productName,
+                        'productCount[]': pd.productCount,
+                        'productPrice[]': pd.productPrice,
+                        'merchantSignature': pd.merchantSignature,
+                        'returnUrl': pd.returnUrl,
+                        'serviceUrl': pd.serviceUrl,
+                        'clientFirstName': pd.clientFirstName,
+                        'clientPhone': pd.clientPhone
+                    };
+                    
+                    for (const [key, value] of Object.entries(fields)) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = value;
+                        form.appendChild(input);
+                    }
+                    
+                    document.body.appendChild(form);
+                    form.submit();
+                } else {
+                    alert('Помилка: ' + JSON.stringify(data));
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
                 console.error('Error:', error);
-                submitBtn.innerHTML = originalBtnText; submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText; 
+                submitBtn.disabled = false;
                 alert('Помилка. Спробуйте ще раз.');
             });
         });
