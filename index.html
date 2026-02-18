@@ -525,7 +525,12 @@
         function openModal() {
             modal.classList.remove('hidden');
             setTimeout(() => { backdrop.classList.remove('opacity-0'); panel.classList.remove('scale-95', 'opacity-0'); panel.classList.add('scale-100', 'opacity-100'); }, 10);
-            if (typeof fbq === 'function') fbq('track', 'InitiateCheckout');
+            if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', {
+                value: parseFloat(DISPLAY_PRICE),
+                currency: 'UAH',
+                content_name: 'Personalna Strategiya',
+                content_category: DISPLAY_PRICE + ' грн'
+            });
         }
         function closeModal() {
             backdrop.classList.add('opacity-0'); panel.classList.remove('scale-100', 'opacity-100'); panel.classList.add('scale-95', 'opacity-0');
@@ -582,7 +587,15 @@
             if (hasError) return;
 
             // Відправляємо Lead в Pixel
-            if (typeof fbq === 'function') fbq('track', 'Lead');
+            if (typeof fbq === 'function') fbq('track', 'Lead', {
+                value: parseFloat(DISPLAY_PRICE),
+                currency: 'UAH',
+                content_name: 'Personalna Strategiya',
+                content_category: DISPLAY_PRICE + ' грн'
+            });
+            
+            // Зберігаємо ціну для сторінки thanks.html
+            localStorage.setItem('purchase_price', DISPLAY_PRICE);
 
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Обробка...';
