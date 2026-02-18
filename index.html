@@ -127,36 +127,48 @@
             <div class="hero-overlay absolute inset-0"></div>
         </div>
         <div class="relative z-10 w-full max-w-md mx-auto flex flex-col justify-between h-full">
+            
+            <!-- БЕЙДЖ -->
             <div class="flex justify-center w-full pt-2">
                 <div class="inline-block border border-gold/40 bg-[#050a08]/60 backdrop-blur-md px-4 py-1.5 rounded-full shadow-lg">
                     <span class="text-gold text-[10px] font-bold uppercase tracking-widest">Персональна Стратегія</span>
                 </div>
             </div>
+
+            <!-- КОНТЕНТ -->
             <div class="flex flex-col items-center justify-end pb-4 w-full">
                 <h1 class="text-3xl sm:text-4xl font-medium uppercase leading-none mb-3 text-white text-center drop-shadow-xl">
                     Отримай <span class="text-gold italic">стратегію</span> як вибудувати
                     <span class="text-gold">внутрішню опору</span>
                 </h1>
+                
                 <p class="text-base sm:text-lg text-gray-200 mb-3 font-normal leading-snug text-center drop-shadow-md">
                     Без вигорання, насилля над собою та вічного пошуку схвалення
                 </p>
+                
                 <p class="text-sm text-gray-300 mb-4 px-1 leading-snug text-center max-w-sm">
                     Отримай персональний аудит, на якому я детально розберу твою ситуацію і дам чіткий план: що тримає тебе на місці і які конкретні кроки приведуть тебе до реалізації без вигорання.
                 </p>
+
+                <!-- ЦЕНА + ТАЙМЕР -->
                 <div class="w-full bg-[#050a08]/80 backdrop-blur-md border border-gold/40 rounded-xl p-4 mb-4 shadow-2xl relative overflow-hidden group">
                     <div class="absolute -top-10 -right-10 w-20 h-20 bg-gold blur-3xl opacity-10 group-hover:opacity-20 transition"></div>
+                    
                     <div class="flex flex-col items-center justify-center mb-3">
                         <div class="flex items-baseline gap-3">
                             <span class="text-5xl font-serif text-white font-bold">390 ₴</span>
                             <span class="text-lg text-gray-500 line-through decoration-gold decoration-1">1790 ₴</span>
                         </div>
                     </div>
+
                     <div class="w-full border-t border-dashed border-gold/30 mb-3"></div>
+
                     <div class="flex justify-between items-center text-gold font-mono text-xs px-2">
                         <span class="uppercase tracking-widest opacity-80">До збільшення ціни:</span>
                         <span class="font-bold text-base" id="timer">14:59</span>
                     </div>
                 </div>
+
                 <button onclick="openModal()" class="w-full btn-gold font-bold text-lg py-4 rounded-xl uppercase tracking-wider animate-pulse-gold shadow-2xl">
                     Хочу персональний аудит
                 </button>
@@ -164,23 +176,32 @@
         </div>
     </header>
 
-    <!-- БЛОК 2: ОТЗЫВЫ -->
+    <!-- БЛОК 2: ОТЗЫВЫ (otz1 - otz6) -->
     <section class="py-10 border-b border-white/5 bg-[#050a08]">
         <div class="max-w-md mx-auto px-4 text-center mb-6">
              <h2 class="text-2xl font-serif text-white leading-tight">Ось як змінюється ваша ситуація після розбору</h2>
         </div>
+
         <div class="scroller mb-6">
             <div class="scroller__inner">
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review1.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review2.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review3.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review4.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review1.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review2.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review3.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review4.jpg" class="w-full h-full object-cover"></div>
+                <!-- ORIGINALS (1-6) -->
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz1.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz2.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz3.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz4.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz5.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz6.jpg" class="w-full h-full object-cover"></div>
+                
+                <!-- DUPLICATES (1-6) -->
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz1.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz2.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz3.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz4.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz5.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz6.jpg" class="w-full h-full object-cover"></div>
             </div>
         </div>
+
         <div class="max-w-md mx-auto px-4">
             <button onclick="openModal()" class="w-full border border-gold text-gold hover:bg-gold hover:text-black font-bold py-4 rounded-lg uppercase transition tracking-widest text-sm">
                 Хочу персональний аудит
@@ -192,6 +213,7 @@
     <section class="py-12 px-4 bg-[#08100d]">
         <div class="max-w-lg mx-auto">
             <h2 class="text-3xl font-serif text-center mb-10 text-gold italic">Тобі знайоме це відчуття?</h2>
+            
             <div class="space-y-8">
                 <div class="flex gap-4 items-start">
                     <div class="mt-1 min-w-[20px] text-gold"><i data-lucide="cloud-rain"></i></div>
@@ -229,9 +251,11 @@
     <section class="py-12 px-4 bg-[#050a08] border-t border-white/5">
         <div class="max-w-lg mx-auto">
             <h2 class="text-2xl font-serif text-center mb-4 uppercase">Чому ти стоїш на місці, поки інші зростають?</h2>
+            
             <p class="text-center text-gray-300 mb-8 font-light text-sm">
                 Проблема не в тобі. Проблема в тому, що ніхто не показав тобі <span class="text-gold underline decoration-1 underline-offset-4">ТВІЙ</span> шлях.
             </p>
+            
             <div class="grid gap-4">
                 <div class="glow-card p-5 flex gap-4 items-start">
                     <div class="text-2xl mt-1">⚠️</div>
@@ -268,7 +292,6 @@
 
             <!-- ЧАСТЬ 1: ДО -->
             <div class="mb-12">
-                <!-- Сетка фото ДО (ЧБ -> Цвет) -->
                 <div class="grid grid-cols-2 gap-3 mb-6">
                     <div class="aspect-[3/4] rounded-2xl overflow-hidden border border-white/10">
                         <img src="do1.jpg" alt="До 1" class="w-full h-full object-cover grayscale hover:grayscale-0 active:grayscale-0 transition-all duration-500 ease-in-out">
@@ -286,13 +309,12 @@
 
             <!-- ЧАСТЬ 2: ЗАРАЗ -->
             <div class="mb-10">
-                <!-- Сетка фото ПОСЛЕ (Цветные) -->
                 <div class="grid grid-cols-2 gap-3 mb-6">
                     <div class="aspect-[3/4] rounded-2xl overflow-hidden border border-gold/30">
-                        <img src="posle1.jpg" alt="Після 1" class="w-full h-full object-cover">
+                        <img src="pos1.jpg" alt="Після 1" class="w-full h-full object-cover">
                     </div>
                     <div class="aspect-[3/4] rounded-2xl overflow-hidden border border-gold/30">
-                        <img src="posle2.jpg" alt="Після 2" class="w-full h-full object-cover">
+                        <img src="pos2.jpg" alt="Після 2" class="w-full h-full object-cover">
                     </div>
                 </div>
 
@@ -302,28 +324,34 @@
                 </p>
             </div>
 
-            <!-- Кнопка -->
             <button onclick="openModal()" class="w-full btn-gold font-bold text-lg py-5 rounded-xl uppercase tracking-wider shadow-xl flex items-center justify-center gap-2">
                 ОТРИМАТИ ДОСТУП <i data-lucide="play-circle" class="w-5 h-5"></i>
             </button>
         </div>
     </section>
 
-    <!-- БЛОК 6: РЕЗУЛЬТАТЫ -->
+    <!-- БЛОК 6: РЕЗУЛЬТАТЫ (otz7 - otz12) -->
     <section class="py-10 bg-[#050a08]">
         <div class="text-center mb-6 px-4">
             <h2 class="text-2xl font-serif text-white">Результати моєї системи</h2>
         </div>
         <div class="scroller">
             <div class="scroller__inner">
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review1.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review2.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review3.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review4.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review1.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review2.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review3.jpg" class="w-full h-full object-cover"></div>
-                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="review4.jpg" class="w-full h-full object-cover"></div>
+                <!-- ORIGINALS (7-12) -->
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz7.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz8.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz9.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz10.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz11.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz12.jpg" class="w-full h-full object-cover"></div>
+                
+                <!-- DUPLICATES (7-12) -->
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz7.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz8.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz9.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz10.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz11.jpg" class="w-full h-full object-cover"></div>
+                <div class="review-card aspect-[9/16] bg-zinc-900"><img src="otz12.jpg" class="w-full h-full object-cover"></div>
             </div>
         </div>
     </section>
@@ -333,6 +361,7 @@
         <div class="max-w-lg mx-auto">
             <h2 class="text-2xl font-serif text-center mb-2 text-white">Що ти отримаєш <br><span class="text-gold italic">на розборі?</span></h2>
             <p class="text-center text-gray-400 text-sm mb-8 font-light">Це не шаблонні поради. Це глибокий аналіз.</p>
+            
             <div class="grid gap-4">
                 <div class="glow-card p-5">
                     <div class="flex items-center gap-3 mb-2">
